@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Play Snake Arena, a colorful browser snake game.">
+  <title>Snake Arena — Browser Game</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Snake Arena home"><span class="brand-mark">◎</span><span>SNAKE<span class="brand-accent">ARENA</span></span></a>
+      <div class="status"><span class="pulse"></span><span id="connectionText">Connecting…</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">ARCADE · SURVIVE · GROW</p>
+        <h1>Own the <span>arena.</span></h1>
+        <p class="subtitle">Eat glowing orbs. Grow your snake. Climb the leaderboard.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-label">YOUR SCORE</span><strong id="score">0</strong></div>
+        <div class="stat"><span class="stat-label">PLAYERS ONLINE</span><strong id="playersOnline">0</strong></div>
+      </div>
+    </section>
+
+    <section class="game-layout">
+      <div class="game-card">
+        <div class="game-toolbar">
+          <div class="live-label"><span class="live-dot"></span><span id="modeLabel">ARENA</span></div>
+          <div class="toolbar-right"><span id="hint">Move your mouse to steer</span><button id="soundBtn" class="icon-btn" title="Toggle sound" aria-label="Toggle sound">♪</button></div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="game" aria-label="Snake Arena game canvas"></canvas>
+          <div id="startOverlay" class="overlay">
+            <div class="start-panel">
+              <div class="snake-icon">〰</div>
+              <p class="eyebrow">READY PLAYER ONE?</p>
+              <h2>Enter the arena</h2>
+              <label for="playerName">Your nickname</label>
+              <input id="playerName" maxlength="16" placeholder="SnakeRookie" autocomplete="nickname">
+              <button id="playBtn" class="primary-btn">Play now <span>→</span></button>
+              <p class="small-note">Use your mouse or touch to steer. Collect the glowing orbs.</p>
+            </div>
+          </div>
+          <div id="gameOverOverlay" class="overlay hidden">
+            <div class="start-panel">
+              <p class="eyebrow">ROUND COMPLETE</p><h2>Nice run!</h2>
+              <p class="result-text">Your score: <strong id="finalScore">0</strong></p>
+              <button id="againBtn" class="primary-btn">Play again <span>→</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span><kbd>Mouse</kbd> steer</span><span><kbd>Touch</kbd> steer on mobile</span><span><span class="orb-key"></span> collect orbs</span>
+        </div>
+      </div>
+
+      <aside class="side-column">
+        <div class="side-card">
+          <div class="side-heading"><div><p class="eyebrow">LIVE RANKING</p><h3>Leaderboard</h3></div><span class="rank-icon">↗</span></div>
+          <ol id="leaderboard" class="leaderboard"><li class="empty-rank">Join the game to appear here.</li></ol>
+        </div>
+        <div class="side-card tip-card">
+          <div class="tip-icon">✦</div><div><h3>Quick tip</h3><p>Keep moving and collect small orbs to grow. Watch out for other snakes!</p></div>
+        </div>
+        <div class="side-card community-card"><p class="eyebrow">THE NEXT LEVEL</p><h3>Bring your friends.</h3><p>Share the game link and see who can top the leaderboard.</p><button id="copyLinkBtn" class="secondary-btn">Copy game link</button><span id="copyStatus" class="copy-status" aria-live="polite"></span></div>
+      </aside>
+    </section>
+    <footer><span>© 2026 Snake Arena</span><span>Fan-made starter project · Not affiliated with Slither.io</span></footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/game.js"></script>
+</body>
+</html>
